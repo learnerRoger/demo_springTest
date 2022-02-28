@@ -40,4 +40,10 @@
     </mvc:annotation-driven>
     <mvc:default-servlet-handler/>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.example.interceptor.MyInterceptor1"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

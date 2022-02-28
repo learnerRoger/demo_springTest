@@ -239,7 +239,7 @@
 				<h1>登录失败 页面</h1>
 
 				<ol class="breadcrumb">
-					<li><a href="${pageContext.request.contextPath}/index.jsp"><i
+					<li><a href="${pageContext.request.contextPath}/pages/index.jsp"><i
 							class="fa fa-dashboard"></i> 首页</a></li>
 					<li class="active">登录失败</li>
 				</ol>

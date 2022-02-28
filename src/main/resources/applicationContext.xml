@@ -36,4 +36,5 @@
     <bean id="userDao" class="com.example.dao.impl.UserDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
+
 </beans>
