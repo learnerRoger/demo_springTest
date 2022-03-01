@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 @Controller
 @RequestMapping("/user")
@@ -50,5 +51,16 @@ public class UserController {
     public String del(@PathVariable("userId") Long userId){
         userService.del(userId);
         return "redirect:/user/list";
+    }
+
+    @RequestMapping("/login")
+    public String login(String username, String  password, HttpSession httpSession){
+        User user = userService.login(username,password);
+        if (user != null){
+            httpSession.setAttribute("user",user);
+            System.out.println(httpSession.getAttribute("user"));
+            return "redirect:/pages/main.jsp";
+        }
+        return "redirect:/login.jsp";
     }
 }

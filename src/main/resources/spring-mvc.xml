@@ -43,7 +43,8 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.example.interceptor.MyInterceptor1"></bean>
+            <mvc:exclude-mapping path="/user/login"/>
+            <bean class="com.example.interceptor.PrivilegeInteceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>
