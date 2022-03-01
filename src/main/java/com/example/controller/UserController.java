@@ -7,7 +7,9 @@ import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -32,6 +34,13 @@ public class UserController {
         return modelAndView;
     }
 
+    @RequestMapping("/showListInJsonFormat")
+    @ResponseBody
+    public List<User> show(){
+        List<User> userList = userService.list();
+        return userList;
+    }
+
     @RequestMapping("/saveUI")
     public ModelAndView saveUI(){
         ModelAndView modelAndView = new ModelAndView();
@@ -52,6 +61,8 @@ public class UserController {
         userService.del(userId);
         return "redirect:/user/list";
     }
+
+
 
     @RequestMapping("/login")
     public String login(String username, String  password, HttpSession httpSession){

@@ -54,6 +54,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/user/showListInJsonFormat"/>
             <bean class="com.example.interceptor.PrivilegeInteceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
