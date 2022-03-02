@@ -4,9 +4,11 @@ import com.example.dao.RoleDao;
 import com.example.domain.Role;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("roleDao")
 public class RoleDaoImpl implements RoleDao {
 
     private JdbcTemplate jdbcTemplate;

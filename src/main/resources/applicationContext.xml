@@ -8,7 +8,7 @@
 
     <!--    load properties file-->
 
-    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+    <context:property-placeholder location="classpath:jdbc.properties" ></context:property-placeholder>
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driver}"></property>
         <property name="jdbcUrl" value="${jdbc.url}"></property>
@@ -20,19 +20,19 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
     <!--    config component scan-->
-    <context:component-scan base-package="com.example"></context:component-scan>
+    <context:component-scan base-package="com.example.*"></context:component-scan>
 
-    <bean id="roleService" class="com.example.service.impl.RoleServiceImpl">
-        <property name="roleDao" ref="roleDao"></property>
-    </bean>
+<!--    <bean id="roleService" class="com.example.service.impl.RoleServiceImpl">-->
+<!--        <property name="roleDao" ref="roleDao"></property>-->
+<!--    </bean>-->
     <bean id="roleDao" class="com.example.dao.impl.RoleDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
     
-    <bean id="userService" class="com.example.service.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao"></property>
-        <property name="roleDao" ref="roleDao"></property>
-    </bean>
+<!--    <bean id="userService" class="com.example.service.impl.UserServiceImpl">-->
+<!--        <property name="userDao" ref="userDao"></property>-->
+<!--        <property name="roleDao" ref="roleDao"></property>-->
+<!--    </bean>-->
     <bean id="userDao" class="com.example.dao.impl.UserDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>

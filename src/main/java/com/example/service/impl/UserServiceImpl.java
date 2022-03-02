@@ -8,18 +8,23 @@ import com.example.domain.Role;
 import com.example.domain.User;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    @Qualifier("userDao")
     private UserDao userDao;
+
+    @Autowired
+    @Qualifier("roleDao")
     private RoleDao roleDao;
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     @Override
     public List<User> list() {
@@ -52,10 +57,5 @@ public class UserServiceImpl implements UserService {
         }catch (EmptyResultDataAccessException emptyResultDataAccessException){
             return null;
         }
-    }
-
-
-    public void setRoleDao(RoleDaoImpl roleDao) {
-        this.roleDao = roleDao;
     }
 }

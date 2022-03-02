@@ -7,12 +7,14 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
     private JdbcTemplate jdbcTemplate;
@@ -69,7 +71,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByUserName(String username, String password) throws EmptyResultDataAccessException {
         User users = jdbcTemplate.queryForObject("select * from sys_user where username = ? and password = ?", new BeanPropertyRowMapper<User>(User.class), username, password);
-
         return users;
 
     }
