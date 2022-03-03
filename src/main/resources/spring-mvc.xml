@@ -23,21 +23,15 @@
     </bean>
 
     <bean id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="defaultErrorView" value="error"/>
+        <property name="defaultErrorView" value="404"/>
         <property name="exceptionMappings">
             <map>
-                <entry key="com.itheima.exception.MyException" value="error"></entry>
-                <entry key="java.lang.ClassCastException" value="error"></entry>
+                <entry key="com.itheima.exception.MyException" value="404"></entry>
+                <entry key="java.lang.ClassCastException" value="404"></entry>
             </map>
         </property>
     </bean>
-    <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
-    <!--        <property name="messageConverters">-->
-    <!--            <list>-->
-    <!--                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>-->
-    <!--            </list>-->
-    <!--        </property>-->
-    <!--    </bean>-->
+
     <mvc:annotation-driven/>
 
     <mvc:annotation-driven >
@@ -50,11 +44,13 @@
     </mvc:annotation-driven>
     <mvc:default-servlet-handler/>
 
+
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/showListInJsonFormat"/>
+            <mvc:exclude-mapping path="/user/listTest"/>
             <bean class="com.example.interceptor.PrivilegeInteceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

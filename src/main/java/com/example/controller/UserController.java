@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.domain.ResponseResult;
 import com.example.domain.Role;
 import com.example.domain.User;
 import com.example.service.RoleService;
@@ -7,7 +8,7 @@ import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.example.utils.ResponseUtils2;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,7 +27,7 @@ public class UserController {
 
 
     @RequestMapping("/list")
-    public ModelAndView list(){
+    public ModelAndView list() throws Exception{
         List<User> userList = userService.list();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("userList",userList);
@@ -34,11 +35,28 @@ public class UserController {
         return modelAndView;
     }
 
+//    @RequestMapping("/listTest")
+//    public ModelAndView listTest() throws Exception{
+//        List<User> userList = (List<User>) ResponseUtils2.success(userService.list());
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("userLists",userList);
+//        modelAndView.setViewName("user-list-test");
+//        System.out.println(ResponseUtils2.success(userList).getData());
+//        return modelAndView;
+//    }
+
     @RequestMapping("/showListInJsonFormat")
     @ResponseBody
-    public List<User> show(){
+    public ResponseResult<Object> show() throws Exception{
         List<User> userList = userService.list();
-        return userList;
+        return ResponseUtils2.success(userList);
+    }
+
+    @RequestMapping("/showPart")
+    @ResponseBody
+    public Object showPart() throws Exception{
+        System.out.println(show().getData());
+        return show().getData();
     }
 
     @RequestMapping("/saveUI")

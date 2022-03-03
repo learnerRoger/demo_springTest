@@ -145,15 +145,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${userList}" var="user">
+                            <c:forEach items="${userLists}" var="user">
                                 <tr>
                                     <td><input name="ids" type="checkbox"></td>
-                                    <td>${user.id}</td>
-                                    <td>${user.username}</td>
-                                    <td>${user.email}</td>
-                                    <td>${user.phoneNum}</td>
+                                    <td>${user.data.id}</td>
+                                    <td>${user.data.username}</td>
+                                    <td>${user.data.email}</td>
+                                    <td>${user.data.phoneNum}</td>
                                     <td class="text-center">
-                                        <c:forEach items="${user.roles}" var="role">
+                                        <c:forEach items="${user.data.roles}" var="role">
                                             &nbsp;&nbsp;${role.roleName}
                                         </c:forEach>
                                     </td>
